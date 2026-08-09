@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta name="theme-color" content="#0a0f1e">
+    <meta name="description" content="Sevdiklerinize özel bir anı sayfası hazırlayın: fotoğraflarınızı, mesajınızı ve şarkınızı birleştirip kişiye özel bir hediye linki oluşturun.">
+    <title>Kalben Milat — Anınızı Gönderin</title>
+
+    <!-- Favicon (harici dosya gerektirmez) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff8a73' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 8a5.5 5.5 0 1 0 7.778 7.778l2.444-2.444a5.5 5.5 0 1 0-7.778-7.778L8 8Z'/%3E%3Cpath d='M16 16a5.5 5.5 0 1 0-7.778-7.778l-2.444 2.444a5.5 5.5 0 1 0 7.778 7.778L16 16Z'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Fraunces (başlık) + Plus Jakarta Sans (gövde) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Dosyanız -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Cloudflare Turnstile (CAPTCHA) Bot Koruması Scripti -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+    <!-- Zarif arka plan ışıması (dekoratif, formu etkilemez) -->
+    <div class="aurora" aria-hidden="true">
+        <span class="aurora-blob aurora-blob--coral"></span>
+        <span class="aurora-blob aurora-blob--gold"></span>
+        <span class="aurora-blob aurora-blob--indigo"></span>
+    </div>
+
+    <main class="shell">
+        <header class="brand">
+            <div class="logo-container">
+                <div class="logo">
+                    <!-- Sonsuzluk / Kalp hissi veren modern bir SVG ikon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8a5.5 5.5 0 1 0 7.778 7.778l2.444-2.444a5.5 5.5 0 1 0-7.778-7.778L8 8Z"></path><path d="M16 16a5.5 5.5 0 1 0-7.778-7.778l-2.444 2.444a5.5 5.5 0 1 0 7.778 7.778L16 16Z"></path></svg>
+                </div>
+            </div>
+            <div class="brand-text">
+                <strong>Kalben Milat</strong>
+                <span>Anınızı bize bırakın, gerisini biz halledelim.</span>
+            </div>
+        </header>
+
+        <ul class="trust-badges" aria-label="Güvence bilgileri">
+            <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                Güvenli işlem
+            </li>
+            <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+                24 saatte hazır
+            </li>
+            <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"></path></svg>
+                Kişiye özel
+            </li>
+        </ul>
+
+        <section class="card">
+            <!-- İlerleme Çubuğu -->
+            <div class="progress-wrapper">
+                <div class="progress" role="progressbar" aria-label="Form ilerleme durumu" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    <i id="bar" class="progress-fill"></i>
+                </div>
+            </div>
+
+            <div class="stepinfo" aria-live="polite">
+                <b id="stepNo" class="step-badge">1 / 4</b>
+                <span id="stepTitle" class="step-name">Hediye türü</span>
+            </div>
+
+            <form id="form" class="multistep-form" novalidate>
+
+                <!-- 1. ADIM: Hediye Türü -->
+                <section class="step active" data-step="1">
+                    <header class="step-header">
+                        <h1 class="step-heading">Bu hediye kimin için? <span aria-hidden="true">❤️</span></h1>
+                        <p class="muted">Size en uygun anı sayfasını hazırlayalım.</p>
+                    </header>
+
+                    <fieldset class="choices-group">
+                        <legend class="sr-only">Hediye Türü Seçimi</legend>
+                        <div class="choices-grid">
+                            <label class="choice-card" for="purp_sevgili">
+                                <input type="radio" id="purp_sevgili" name="purpose" value="sevgili" required>
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">❤️</span>
+                                    <b class="choice-text">Sevgilime</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_es">
+                                <input type="radio" id="purp_es" name="purpose" value="es">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">💍</span>
+                                    <b class="choice-text">Eşime</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_dogum">
+                                <input type="radio" id="purp_dogum" name="purpose" value="dogum_gunu">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">🎂</span>
+                                    <b class="choice-text">Doğum günü</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_yildonumu">
+                                <input type="radio" id="purp_yildonumu" name="purpose" value="yildonumu">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">📅</span>
+                                    <b class="choice-text">Yıldönümü</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_ozur">
+                                <input type="radio" id="purp_ozur" name="purpose" value="ozur_barisma">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">🤝</span>
+                                    <b class="choice-text">Özür &amp; Barışma</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_uzak">
+                                <input type="radio" id="purp_uzak" name="purpose" value="uzak_mesafe">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">✈️</span>
+                                    <b class="choice-text">Uzak mesafe</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_aile">
+                                <input type="radio" id="purp_aile" name="purpose" value="aile">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">👨‍👩‍👧</span>
+                                    <b class="choice-text">Ailem</b>
+                                </span>
+                            </label>
+
+                            <label class="choice-card" for="purp_arkadas">
+                                <input type="radio" id="purp_arkadas" name="purpose" value="arkadas">
+                                <span class="choice-content">
+                                    <span class="choice-icon" aria-hidden="true">🫂</span>
+                                    <b class="choice-text">Arkadaşıma</b>
+                                </span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group mt-large">
+                        <label for="orderId" class="form-label">Shopier sipariş numarası</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="orderId" name="orderId" class="form-input" maxlength="100" required placeholder="Örn. KM-1042">
+                        </div>
+                        <div class="form-footer">
+                            <span class="error-msg"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. ADIM: Hikaye Bilgileri -->
+                <section class="step" data-step="2">
+                    <header class="step-header">
+                        <h1 class="step-heading">Hikâyenizin bilgileri <span aria-hidden="true">✨</span></h1>
+                    </header>
+
+                    <div class="form-group">
+                        <label for="recipient" class="form-label">Alıcının adı</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="recipient" name="recipient" class="form-input" maxlength="50" required placeholder="Örn. Deniz">
+                        </div>
+                        <div class="form-footer">
+                            <span class="error-msg"></span>
+                            <small class="char-counter">0 / 50</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nickname" class="form-label">Nasıl hitap edelim?</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="nickname" name="nickname" class="form-input" maxlength="30" placeholder="Örn. Aşkım">
+                        </div>
+                        <div class="form-footer">
+                            <span class="error-msg"></span>
+                            <small class="char-counter">0 / 30</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="form-label">Sayfanın başlığı</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="title" name="title" class="form-input" maxlength="60" required placeholder="Bizim Hikâyemiz ❤️">
+                        </div>
+                        <div class="form-footer">
+                            <span class="error-msg"></span>
+                            <small class="char-counter">0 / 60</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date" class="form-label">Özel tarih <em class="optional-text">(isteğe bağlı)</em></label>
+                        <div class="input-wrapper">
+                            <input type="date" id="date" name="date" class="form-input">
+                        </div>
+                    </div>
+
+                    <div id="extra" class="dynamic-content"></div>
+                </section>
+
+                <!-- 3. ADIM: Anı Yükleme -->
+                <section class="step" data-step="3">
+                    <header class="step-header">
+                        <h1 class="step-heading">Anılarınızı yükleyin <span aria-hidden="true">📸</span></h1>
+                        <p class="muted">En fazla <b class="highlight">6 fotoğraf</b>. Fotoğraflar web için otomatik optimize edilir.</p>
+                    </header>
+
+                    <div class="upload-area" id="uploadArea">
+                        <input id="photos" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple hidden>
+                        <button type="button" class="btn-upload" id="pick">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                            Fotoğraf Ekle
+                        </button>
+                    </div>
+
+                    <div id="preview" class="photo-grid"></div>
+                    <div id="photoStatus" class="status-badge">0 / 6 fotoğraf</div>
+
+                    <div class="form-group mt-large">
+                        <label for="message" class="form-label">Özel mesaj</label>
+                        <div class="input-wrapper">
+                            <textarea id="message" name="message" class="form-input form-textarea" maxlength="1000" required placeholder="İçinizden geldiği gibi yazabilirsiniz..."></textarea>
+                        </div>
+                        <div class="form-footer">
+                            <span class="error-msg"></span>
+                            <small id="msgCount" class="char-counter">0 / 1000</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="music" class="form-label">Müzik adı <em class="optional-text">(isteğe bağlı)</em></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="music" name="music" class="form-input" maxlength="100" placeholder="Örn. Şarkı adı — sanatçı">
+                        </div>
+                        <div class="form-footer">
+                            <span class="error-msg"></span>
+                            <small class="char-counter">0 / 100</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. ADIM: Özet ve Onay -->
+                <section class="step" data-step="4">
+                    <header class="step-header">
+                        <h1 class="step-heading">Her şey hazır mı? <span aria-hidden="true">❤️</span></h1>
+                    </header>
+
+                    <div class="summary-container">
+                        <div id="summary" class="summary-content"></div>
+                        <div id="submitStatus" class="status-message"></div>
+                    </div>
+
+                    <div class="legal-notice">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-small"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <p class="small">Gönderdiğiniz bilgiler yalnızca siparişinizin hazırlanması amacıyla güvenle işlenir.</p>
+                    </div>
+
+                    <!-- CAPTCHA Güvenlik Alanı -->
+                    <div class="captcha-wrapper">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEKhgoPidDONYPZR" data-theme="light"></div>
+                    </div>
+                </section>
+
+                <!-- Butonlar -->
+                <div class="actions">
+                    <button type="button" id="back" class="btn btn-secondary" disabled>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+                        Geri
+                    </button>
+                    <button type="button" id="next" class="btn btn-primary">
+                        Devam Et
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+       <footer class="footer">
+            <p>Kalben Milat &bull; Kişiye özel dijital anılar</p>
+            <div style="margin-top: 10px;">
+                <a href="mailto:kalbenmilat@gmail.com" style="color: var(--text-muted, #64748b); text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Destek: kalbenmilat@gmail.com
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
